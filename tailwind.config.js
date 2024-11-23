@@ -63,6 +63,14 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
       },
       colors: {
+        "est-FBFDFE": "#FBFDFE",
+        "est-EDF4F7": "#EDF4F7",
+        "est-EDF7FD": "#EDF7FD",
+        "est-CFEAFA": "#CFEAFA",
+        "est-ADD8E6": "#ADD8E6",
+        "est-30819C": "#30819C",
+        "est-0F97E6": "#0F97E6",
+        "est-032335": "#032335",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

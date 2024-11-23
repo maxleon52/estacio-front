@@ -11,11 +11,11 @@ export function AppLayout() {
         {/* <Sidebar isOpen={isOpen} toogle={toogle} /> */}
       </div>
 
-      <div className="w-full flex-col">
+      <div className="flex w-full flex-col">
         {/* DIV NECESSÁRIO PARA O LAYOUT */}
         <header className="border border-blue-500">Header</header>
 
-        <main className="w-full border border-purple-500">
+        <main className="w-full flex-1 border border-purple-500">
           <Outlet />
         </main>
       </div>
