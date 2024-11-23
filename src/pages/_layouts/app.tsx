@@ -5,10 +5,8 @@ import { Outlet } from "react-router-dom";
 export function AppLayout() {
   return (
     <section className="flex min-h-screen flex-col antialiased">
-      <header className="sticky left-0 right-0 top-0 bg-est-FBFDFE px-10 py-5">
-        <div className="h-20">
-          <img src="/images/logo.svg" alt="" />
-        </div>
+      <header className="sticky left-0 right-0 top-0 flex h-20 items-center justify-between bg-est-FBFDFE px-10">
+        <img src="/images/logo.svg" alt="" />
       </header>
 
       {/* <div className="grid h-full grid-cols-[360px_1fr] bg-green-500 "> */}
