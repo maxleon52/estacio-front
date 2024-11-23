@@ -69,7 +69,13 @@
   * {
     @apply border-border;
   }
+  #root {
+    @apply min-h-screen;
+  }
   body {
     @apply bg-background text-foreground;
   }
+}
+html, body {
+    height: 100%;
 }
