@@ -25,8 +25,8 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Painel de Controle",
-    url: "/painel-de-controle",
+    title: "Dashboard",
+    url: "/dashboard",
     icon: LayoutDashboard,
   },
   {
@@ -82,7 +82,7 @@ export function AppSidebar() {
                     onClick={() => setIsActive(item)}
                   >
                     <Link to={item.url}>
-                      <item.icon />
+                      <item.icon className="stroke-2" />
                       <span>{item.title}</span>
                     </Link>
                   </SidebarMenuButton>
