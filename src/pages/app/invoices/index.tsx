@@ -6,18 +6,26 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import {
-  ArrowRight,
+  ArrowDownToLine,
   CalendarClock,
-  FilePenLine,
+  CalendarIcon,
+  CircleDollarSign,
+  Copy,
+  QrCode,
   SearchIcon,
 } from "lucide-react";
 import * as React from "react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -39,12 +47,6 @@ interface Contract {
   status: "ativo" | "renovação" | "pendente";
   paymentStatus: "pago" | "pendente" | "atrasado";
 }
-
-const color = {
-  pago: "emerald",
-  pendente: "orange",
-  atrasado: "red",
-};
 
 const data: Contract[] = [
   {
@@ -134,7 +136,8 @@ const data: Contract[] = [
   // Add more sample data as needed
 ];
 
-export function ContractList() {
+export function Invoices() {
+  const [currentDate, setCurrentDate] = React.useState("");
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     [],
   );
@@ -170,8 +173,8 @@ export function ContractList() {
   return (
     <div className="space-y-4">
       <header className="flex items-center gap-2 text-4xl font-bold text-primary">
-        <FilePenLine className="size-8" />
-        <h1>Contratos</h1>
+        <CircleDollarSign className="size-8" />
+        <h1>Resumo financeiro</h1>
       </header>
       <div className="flex flex-wrap items-center gap-4">
         <div className="relative min-w-[200px] flex-1">
@@ -185,19 +188,37 @@ export function ContractList() {
             className="pl-9"
           />
         </div>
+        <Popover>
+          <PopoverTrigger asChild>
+            <Button
+              variant={"calendar"}
+              className={cn(
+                "w-[240px] justify-start pl-3 text-left font-normal",
+              )}
+            >
+              {currentDate ? (
+                new Date(currentDate).toLocaleDateString("pt-BR")
+              ) : (
+                <>Escolher data </>
+              )}
+              <CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+              mode="single"
+              selected={new Date(currentDate)}
+              onSelect={(value) => setCurrentDate(String(value))}
+              // disabled={(date) =>
+              //   date > new Date() || date < new Date("1900-01-01")
+              // }
+              initialFocus
+            />
+          </PopoverContent>
+        </Popover>
         <Select>
           <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Data" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="today">Hoje</SelectItem>
-            <SelectItem value="week">Esta semana</SelectItem>
-            <SelectItem value="month">Este mês</SelectItem>
-          </SelectContent>
-        </Select>
-        <Select>
-          <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Status de pagamento" />
+            <SelectValue placeholder="Status" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="paid">Pago</SelectItem>
@@ -205,20 +226,8 @@ export function ContractList() {
             <SelectItem value="late">Atrasado</SelectItem>
           </SelectContent>
         </Select>
-        <Select>
-          <SelectTrigger className="w-[200px]">
-            <SelectValue placeholder="Status do contrato" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="active">Ativo</SelectItem>
-            <SelectItem value="renewal">Renovação</SelectItem>
-            <SelectItem value="pending">Pendente</SelectItem>
-          </SelectContent>
-        </Select>
+
         <Button className="ml-auto">Aplicar filtro</Button>
-        <Badge variant="outline" className="ml-2">
-          {table.getFilteredRowModel().rows.length} contratos
-        </Badge>
       </div>
 
       <div className="space-y-4">
@@ -233,14 +242,6 @@ export function ContractList() {
             return (
               <Card key={contract.id} className="p-6 text-est-0F97E6">
                 <div className="flex items-start gap-4">
-                  <Avatar>
-                    <AvatarImage src="" />
-                    <AvatarFallback>
-                      {contract.title.split(" ")[0].charAt(0)}
-                      {contract.title.split(" ").pop()?.charAt(0)}
-                    </AvatarFallback>
-                  </Avatar>
-
                   <div className="flex-1 space-y-3 divide-y-2 divide-est-0F97E6/20">
                     <div className="flex items-start justify-between gap-4">
                       <div>
@@ -252,24 +253,27 @@ export function ContractList() {
                         </p>
                       </div>
                       <Badge
-                        variant={
-                          contract.status === "ativo" ? "success" : "warning"
-                        }
+                        className={cn(
+                          contract.paymentStatus === "pago"
+                            ? "bg-emerald-200 text-emerald-700"
+                            : contract.paymentStatus === "pendente"
+                              ? "bg-orange-200 text-orange-700"
+                              : "bg-red-200 text-red-700",
+                        )}
                       >
-                        {contract.status === "ativo" ? "Ativo" : "Renovar"}
+                        {contract.paymentStatus}
                       </Badge>
                     </div>
 
-                    <div className="flex items-end justify-between">
-                      <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-est-30819C">
+                    <div className="flex items-baseline justify-between pt-4">
+                      <div className="flex flex-wrap gap-x-8 gap-y-2 text-est-30819C">
                         <div>
-                          <p>Vigência do contrato</p>
+                          <p>Vencimento</p>
                           <div className="flex items-center gap-1 font-medium text-est-032335">
                             <p className="flex w-fit items-center gap-1 rounded-md bg-est-EDF4F7 px-2 py-1">
                               <CalendarClock className="size-3 text-est-30819C" />
-                              {contract.duration}
+                              {contract.startDate}
                             </p>
-                            {contract.startDate} → {contract.endDate}
                           </div>
                         </div>
                         <div>
@@ -279,30 +283,38 @@ export function ContractList() {
                               <small className="text-est-30819C">R$</small>{" "}
                               {contract.amount.toFixed(2)}{" "}
                             </p>
-                            mensal
                           </div>
                         </div>
-                        <div>
-                          <p>Boleto</p>
-                          <p
-                            className={cn(
-                              "w-fit rounded-md px-2 py-1",
-                              `bg-${color[contract.paymentStatus]}-200`,
-                              contract.paymentStatus === "pago"
-                                ? "text-emerald-700"
-                                : contract.paymentStatus === "pendente"
-                                  ? "text-orange-700"
-                                  : "text-red-700",
-                            )}
-                          >
-                            {contract.paymentStatus}
-                          </p>
+                      </div>
+
+                      <div className="flex gap-5">
+                        <div className="flex flex-col">
+                          <span>Boleto</span>
+                          <div className="flex gap-2">
+                            <Button variant="link" className="p-0">
+                              Boleto
+                              <ArrowDownToLine className="h-4 w-4" />
+                            </Button>
+                            <Button variant="link" className="p-0">
+                              Linha digitável
+                              <Copy className="h-4 w-4" />
+                            </Button>
+                          </div>
+                        </div>
+                        <div className="flex flex-col">
+                          <span>PIX</span>
+                          <div className="flex gap-2">
+                            <Button variant="link" className="p-0">
+                              QR code
+                              <QrCode className="h-4 w-4" />
+                            </Button>
+                            <Button variant="link" className="p-0">
+                              Copia e cola
+                              <Copy className="h-4 w-4" />
+                            </Button>
+                          </div>
                         </div>
                       </div>
-                      <Button variant="link">
-                        Mais detalhes
-                        <ArrowRight className="h-4 w-4" />
-                      </Button>
                     </div>
                   </div>
                 </div>
