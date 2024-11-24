@@ -14,7 +14,7 @@ export function AppLayout() {
             <SidebarTrigger />
           </div>
         </header>
-        <main className="w-full !overflow-hidden rounded-tl-[20px] bg-est-EDF4F7 p-6">
+        <main className="w-full flex-1 rounded-tl-[20px] bg-est-EDF4F7 p-6">
           <Outlet />
         </main>
       </div>

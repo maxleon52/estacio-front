@@ -20,21 +20,21 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
+  { month: "Janeiro", contrato: 186, avulso: 80 },
+  { month: "Fevereiro", contrato: 305, avulso: 200 },
+  { month: "Março", contrato: 237, avulso: 120 },
+  { month: "Abril", contrato: 73, avulso: 190 },
+  { month: "Maio", contrato: 209, avulso: 130 },
+  { month: "Junho", contrato: 214, avulso: 140 },
 ];
 
 const chartConfig = {
-  desktop: {
-    label: "Desktop",
+  contrato: {
+    label: "Contrato",
     color: "#ADD8E6",
   },
-  mobile: {
-    label: "Mobile",
+  avulso: {
+    label: "Avulso",
     color: "hsl(var(--chart-2))",
   },
 } satisfies ChartConfig;
@@ -77,8 +77,8 @@ export function ChartMoreReserved() {
               cursor={false}
               content={<ChartTooltipContent indicator="dashed" />}
             />
-            <Bar dataKey="desktop" fill="var(--color-desktop)" radius={4} />
-            <Bar dataKey="mobile" fill="var(--color-mobile)" radius={4} />
+            <Bar dataKey="contrato" fill="var(--color-contrato)" radius={4} />
+            <Bar dataKey="avulso" fill="var(--color-avulso)" radius={4} />
           </BarChart>
         </ChartContainer>
       </CardContent>
