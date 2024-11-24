@@ -21,6 +21,13 @@ export const router = createBrowserRouter([
         path: "/dashboard",
         element: <div>Dash</div>,
       },
+      { path: "/painel-de-controle", element: <div>painel</div> },
+      { path: "/reservas", element: <div>reservas</div> },
+      { path: "/contratos", element: <div>contratos</div> },
+      { path: "/financeiro", element: <div>financeiro</div> },
+      { path: "/espacos", element: <div>espacos</div> },
+      { path: "/servicos", element: <div>servicos</div> },
+      { path: "/comentarios", element: <div>comentarios</div> },
     ],
   },
 ]);

@@ -1,4 +1,14 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import {
+  Building2,
+  Calendar1,
+  DollarSign,
+  FilePenLine,
+  Handshake,
+  LayoutDashboard,
+  MessagesSquare,
+} from "lucide-react";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 import {
   Sidebar,
@@ -6,7 +16,6 @@ import {
   SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
-  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
@@ -16,33 +25,44 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "#",
-    icon: Home,
+    title: "Painel de Controle",
+    url: "/painel-de-controle",
+    icon: LayoutDashboard,
   },
   {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
+    title: "Reservas",
+    url: "/reservas",
+    icon: Calendar1,
   },
   {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
+    title: "Contratos",
+    url: "/contratos",
+    icon: FilePenLine,
   },
   {
-    title: "Search",
-    url: "#",
-    icon: Search,
+    title: "Financeiro",
+    url: "/financeiro",
+    icon: DollarSign,
   },
   {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
+    title: "Espaços",
+    url: "/espacos",
+    icon: Building2,
+  },
+  {
+    title: "Serviços",
+    url: "/servicos",
+    icon: Handshake,
+  },
+  {
+    title: "Comentários",
+    url: "/comentarios",
+    icon: MessagesSquare,
   },
 ];
 
 export function AppSidebar() {
+  const [isActive, setIsActive] = useState(items[0]);
   return (
     <Sidebar collapsible="offcanvas">
       <SidebarHeader>
@@ -51,16 +71,20 @@ export function AppSidebar() {
 
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                  <SidebarMenuButton
+                    size={"lg"}
+                    asChild
+                    isActive={item === isActive}
+                    onClick={() => setIsActive(item)}
+                  >
+                    <Link to={item.url}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
