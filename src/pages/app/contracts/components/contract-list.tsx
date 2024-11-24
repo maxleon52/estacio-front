@@ -5,12 +5,7 @@ import {
   getFilteredRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import {
-  ArrowRight,
-  CalendarClock,
-  CalendarIcon,
-  SearchIcon,
-} from "lucide-react";
+import { ArrowRight, CalendarClock, SearchIcon } from "lucide-react";
 import * as React from "react";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -182,8 +177,7 @@ export function ContractList() {
           />
         </div>
         <Select>
-          <SelectTrigger className="w-[180px]">
-            <CalendarIcon className="mr-2 h-4 w-4" />
+          <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Data" />
           </SelectTrigger>
           <SelectContent>
@@ -193,7 +187,7 @@ export function ContractList() {
           </SelectContent>
         </Select>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Status de pagamento" />
           </SelectTrigger>
           <SelectContent>
@@ -203,7 +197,7 @@ export function ContractList() {
           </SelectContent>
         </Select>
         <Select>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-[200px]">
             <SelectValue placeholder="Status do contrato" />
           </SelectTrigger>
           <SelectContent>
@@ -212,10 +206,8 @@ export function ContractList() {
             <SelectItem value="pending">Pendente</SelectItem>
           </SelectContent>
         </Select>
-        <Button variant="secondary" className="ml-auto">
-          Aplicar filtro
-        </Button>
-        <Badge variant="secondary" className="ml-2">
+        <Button className="ml-auto">Aplicar filtro</Button>
+        <Badge variant="outline" className="ml-2">
           {table.getFilteredRowModel().rows.length} contratos
         </Badge>
       </div>
@@ -252,10 +244,10 @@ export function ContractList() {
                       </div>
                       <Badge
                         variant={
-                          contract.status === "active" ? "success" : "warning"
+                          contract.status === "ativo" ? "success" : "warning"
                         }
                       >
-                        {contract.status === "active" ? "Ativo" : "Renovar"}
+                        {contract.status === "ativo" ? "Ativo" : "Renovar"}
                       </Badge>
                     </div>
 
