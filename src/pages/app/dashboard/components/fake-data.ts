@@ -45,3 +45,57 @@ export const fakeDataReceitasAReceber = [
     porcent: "+20%",
   },
 ];
+
+export const fakeDataContratos = [
+  {
+    id: 1,
+    title: "Ativos",
+    qtd: 4534,
+    color: "bg-emerald-500",
+  },
+  {
+    id: 2,
+    title: "Renovável em breve",
+    qtd: 500,
+    color: "bg-orange-500",
+  },
+  {
+    id: 3,
+    title: "Em atraso",
+    qtd: 15,
+    color: "bg-red-500",
+  },
+  {
+    id: 4,
+    title: "Finalizados recentemente",
+    qtd: 47,
+    color: "bg-black",
+  },
+];
+
+export const fakeDataComments = [
+  {
+    id: 1,
+    name: "Avaliação do Cliente 1",
+    comment: "Ótimo serviço!",
+    starsQtd: 5,
+  },
+  {
+    id: 2,
+    name: "Avaliação do Cliente 2",
+    comment: "Rápido atendimento!",
+    starsQtd: 4,
+  },
+  {
+    id: 3,
+    name: "Avaliação do Cliente 3",
+    comment: "Boa qualidade!",
+    starsQtd: 4,
+  },
+  {
+    id: 4,
+    name: "Avaliação do Cliente 4",
+    comment: "Excelente produto!",
+    starsQtd: 5,
+  },
+];
