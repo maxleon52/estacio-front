@@ -13,6 +13,7 @@ import {
   Trash2,
 } from "lucide-react";
 import * as React from "react";
+import { Link } from "react-router-dom";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -216,7 +217,9 @@ export function Contracts() {
             <SelectItem value="pending">Pendente</SelectItem>
           </SelectContent>
         </Select>
-        <Button className="ml-auto">Aplicar filtro</Button>
+        <Button className="ml-auto" asChild>
+          <Link to="/contrato/novo">Novo contrato</Link>
+        </Button>
         <Badge variant="outline" className="ml-2">
           {table.getFilteredRowModel().rows.length} contratos
         </Badge>
@@ -313,9 +316,12 @@ export function Contracts() {
                   </div>
                 </Card>
                 <div className="grid w-[0px] overflow-hidden transition-all group-hover:w-[100px]">
-                  <div className="flex items-center justify-center text-est-032335 hover:cursor-pointer hover:bg-primary hover:text-white">
+                  <Link
+                    to={`/contrato/${contract.id}`}
+                    className="flex items-center justify-center text-est-032335 hover:cursor-pointer hover:bg-primary hover:text-white"
+                  >
                     <FilePenLine className="mr-1 size-4" /> Editar
-                  </div>
+                  </Link>
                   <div className="hover: flex items-center justify-center text-est-032335 hover:cursor-pointer hover:bg-destructive hover:text-white">
                     <Trash2 className="mr-1 size-4" /> Excluir
                   </div>
