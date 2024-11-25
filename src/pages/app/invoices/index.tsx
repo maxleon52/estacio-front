@@ -229,7 +229,7 @@ export function Invoices() {
           </SelectContent>
         </Select>
 
-        <Button className="ml-auto">Aplicar filtro</Button>
+        <Button className="ml-auto">Nova cobrança</Button>
       </div>
 
       <div className="space-y-4">

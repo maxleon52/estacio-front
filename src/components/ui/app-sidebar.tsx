@@ -1,11 +1,8 @@
 import {
   Building2,
-  Calendar1,
   DollarSign,
   FilePenLine,
-  Handshake,
   LayoutDashboard,
-  MessagesSquare,
 } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -29,11 +26,11 @@ const items = [
     url: "/dashboard",
     icon: LayoutDashboard,
   },
-  {
-    title: "Reservas",
-    url: "/reservas",
-    icon: Calendar1,
-  },
+  // {
+  //   title: "Reservas",
+  //   url: "/reservas",
+  //   icon: Calendar1,
+  // },
   {
     title: "Contratos",
     url: "/contratos",
@@ -49,16 +46,16 @@ const items = [
     url: "/espacos",
     icon: Building2,
   },
-  {
-    title: "Serviços",
-    url: "/servicos",
-    icon: Handshake,
-  },
-  {
-    title: "Comentários",
-    url: "/comentarios",
-    icon: MessagesSquare,
-  },
+  // {
+  //   title: "Serviços",
+  //   url: "/servicos",
+  //   icon: Handshake,
+  // },
+  // {
+  //   title: "Comentários",
+  //   url: "/comentarios",
+  //   icon: MessagesSquare,
+  // },
 ];
 
 export function AppSidebar() {
