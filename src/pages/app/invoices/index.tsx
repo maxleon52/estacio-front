@@ -11,8 +11,10 @@ import {
   CalendarIcon,
   CircleDollarSign,
   Copy,
+  FilePenLine,
   QrCode,
   SearchIcon,
+  Trash2,
 } from "lucide-react";
 import * as React from "react";
 
@@ -240,85 +242,98 @@ export function Invoices() {
           .map((row) => {
             const contract = row.original;
             return (
-              <Card key={contract.id} className="p-6 text-est-0F97E6">
-                <div className="flex items-start gap-4">
-                  <div className="flex-1 space-y-3 divide-y-2 divide-est-0F97E6/20">
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h3 className="text-lg font-semibold">
-                          {contract.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground">
-                          {contract.address}
-                        </p>
-                      </div>
-                      <Badge
-                        className={cn(
-                          contract.paymentStatus === "pago"
-                            ? "bg-emerald-200 text-emerald-700"
-                            : contract.paymentStatus === "pendente"
-                              ? "bg-orange-200 text-orange-700"
-                              : "bg-red-200 text-red-700",
-                        )}
-                      >
-                        {contract.paymentStatus}
-                      </Badge>
-                    </div>
-
-                    <div className="flex items-baseline justify-between pt-4">
-                      <div className="flex flex-wrap gap-x-8 gap-y-2 text-est-30819C">
+              <div
+                key={contract.id}
+                className="group grid grid-cols-[1fr_auto]"
+              >
+                <Card className="p-6 text-est-0F97E6 group-hover:rounded-r-none">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-1 space-y-3 divide-y-2 divide-est-0F97E6/20">
+                      <div className="flex items-start justify-between gap-4">
                         <div>
-                          <p>Vencimento</p>
-                          <div className="flex items-center gap-1 font-medium text-est-032335">
-                            <p className="flex w-fit items-center gap-1 rounded-md bg-est-EDF4F7 px-2 py-1">
-                              <CalendarClock className="size-3 text-est-30819C" />
-                              {contract.startDate}
-                            </p>
-                          </div>
+                          <h3 className="text-lg font-semibold">
+                            {contract.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground">
+                            {contract.address}
+                          </p>
                         </div>
-                        <div>
-                          <p>Pagamento</p>
-                          <div className="flex items-center gap-1 font-medium text-est-032335">
-                            <p className="w-fit rounded-md bg-est-EDF4F7 px-2 py-1">
-                              <small className="text-est-30819C">R$</small>{" "}
-                              {contract.amount.toFixed(2)}{" "}
-                            </p>
-                          </div>
-                        </div>
+                        <Badge
+                          className={cn(
+                            contract.paymentStatus === "pago"
+                              ? "bg-emerald-200 text-emerald-700"
+                              : contract.paymentStatus === "pendente"
+                                ? "bg-orange-200 text-orange-700"
+                                : "bg-red-200 text-red-700",
+                          )}
+                        >
+                          {contract.paymentStatus}
+                        </Badge>
                       </div>
 
-                      <div className="flex gap-5">
-                        <div className="flex flex-col">
-                          <span>Boleto</span>
-                          <div className="flex gap-2">
-                            <Button variant="link" className="p-0">
-                              Boleto
-                              <ArrowDownToLine className="h-4 w-4" />
-                            </Button>
-                            <Button variant="link" className="p-0">
-                              Linha digitável
-                              <Copy className="h-4 w-4" />
-                            </Button>
+                      <div className="flex items-baseline justify-between pt-4">
+                        <div className="flex flex-wrap gap-x-8 gap-y-2 text-est-30819C">
+                          <div>
+                            <p>Vencimento</p>
+                            <div className="flex items-center gap-1 font-medium text-est-032335">
+                              <p className="flex w-fit items-center gap-1 rounded-md bg-est-EDF4F7 px-2 py-1">
+                                <CalendarClock className="size-3 text-est-30819C" />
+                                {contract.startDate}
+                              </p>
+                            </div>
+                          </div>
+                          <div>
+                            <p>Pagamento</p>
+                            <div className="flex items-center gap-1 font-medium text-est-032335">
+                              <p className="w-fit rounded-md bg-est-EDF4F7 px-2 py-1">
+                                <small className="text-est-30819C">R$</small>{" "}
+                                {contract.amount.toFixed(2)}{" "}
+                              </p>
+                            </div>
                           </div>
                         </div>
-                        <div className="flex flex-col">
-                          <span>PIX</span>
-                          <div className="flex gap-2">
-                            <Button variant="link" className="p-0">
-                              QR code
-                              <QrCode className="h-4 w-4" />
-                            </Button>
-                            <Button variant="link" className="p-0">
-                              Copia e cola
-                              <Copy className="h-4 w-4" />
-                            </Button>
+
+                        <div className="flex gap-5">
+                          <div className="flex flex-col">
+                            <span>Boleto</span>
+                            <div className="flex gap-2">
+                              <Button variant="link" className="p-0">
+                                Boleto
+                                <ArrowDownToLine className="h-4 w-4" />
+                              </Button>
+                              <Button variant="link" className="p-0">
+                                Linha digitável
+                                <Copy className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </div>
+                          <div className="flex flex-col">
+                            <span>PIX</span>
+                            <div className="flex gap-2">
+                              <Button variant="link" className="p-0">
+                                QR code
+                                <QrCode className="h-4 w-4" />
+                              </Button>
+                              <Button variant="link" className="p-0">
+                                Copia e cola
+                                <Copy className="h-4 w-4" />
+                              </Button>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                </Card>
+                <div className="grid w-[0px] overflow-hidden transition-all group-hover:w-[100px]">
+                  <div className="flex items-center justify-center text-est-032335 hover:cursor-pointer hover:bg-primary hover:text-white">
+                    <FilePenLine className="mr-1 size-4" /> Editar
+                  </div>
+                  <div className="hover: flex items-center justify-center text-est-032335 hover:cursor-pointer hover:bg-destructive hover:text-white">
+                    <Trash2 className="mr-1 size-4" /> Excluir
+                  </div>
                 </div>
-              </Card>
+              </div>
             );
           })}
       </div>
