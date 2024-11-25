@@ -1,6 +1,6 @@
 import { ContractList } from "./components/contract-list";
 
-export default function Contracts() {
+export function Contracts() {
   return (
     <div>
       <ContractList />
